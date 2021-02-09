@@ -1,24 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Container from "react-bootstrap/Container";
+import Nav from "react-bootstrap/Nav";
+import { UserTable } from "./components/UserTable";
+import { UserInfo } from "./components/UserInfo";
+import users from "./users.json";
 
 function App() {
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [tableLayout, setTableLayout] = useState("scroll");
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container fluid>
+      <Nav
+        fill
+        variant="tabs"
+        defaultActiveKey="scroll"
+        onSelect={(eventKey) => setTableLayout(eventKey)}
+      >
+        <Nav.Item>
+          <Nav.Link eventKey="scroll">Scroll</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="paginate">Paginate</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <UserTable
+        users={users}
+        selectUser={setSelectedUser}
+        layout={tableLayout}
+      />
+      {selectedUser ? <UserInfo user={selectedUser} /> : null}
+    </Container>
   );
 }
 
