@@ -1,4 +1,22 @@
-# Getting Started with Create React App
+# Sporttrade Table
+
+## Quickstart
+
+1. `npm install`
+
+2. `npm start`
+
+## Reasonings
+
+I made this app in React because I felt it would be quickest.
+
+It wasn't immediately clear exactly how the page should be layed out. Given there are 50 rows in the user table it isn't the best UX to have them all on a single page without any scroll or pagination. To account for this I made 3 tabs that change the behavior of the page.
+
+1. You can have a table that is 50% of the view height and scrolls with the bottom 50% reserved for the user info card.
+2. You can have pagination w/ 10 records per page. Clicking select will scroll the user info card into view.
+3. You can choose unset and have every record on the page. Clicking select will scroll the user info card into view.
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Pagination from "react-bootstrap/Pagination";
 import Table from "react-bootstrap/Table";
@@ -11,15 +11,15 @@ export const UserTable = ({ users, selectUser, layout }) => {
   const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
-    if (layout === "scroll") {
-      setUsers(users);
-    } else {
+    if (layout === "paginate") {
       const pages = _.chunk(users, 10);
       const pageNumber = 0;
 
       setPageNumber(pageNumber);
       setPages(pages);
       setUsers(pages[pageNumber]);
+    } else {
+      setUsers(users);
     }
   }, [users, layout]);
 
@@ -55,6 +55,7 @@ export const UserTable = ({ users, selectUser, layout }) => {
         <Pagination>
           {pages.map((page, i) => (
             <Pagination.Item
+              key={i}
               active={pageNumber === i}
               onClick={() => {
                 setPageNumber(i);
