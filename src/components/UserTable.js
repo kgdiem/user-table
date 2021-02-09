@@ -9,7 +9,6 @@ export const UserTable = ({ users, selectUser, layout }) => {
   const [_users, setUsers] = useState([]);
   const [pages, setPages] = useState([]);
   const [pageNumber, setPageNumber] = useState(0);
-  const scrollRef = useRef(null);
 
   useEffect(() => {
     if (layout === "scroll") {
@@ -22,15 +21,11 @@ export const UserTable = ({ users, selectUser, layout }) => {
       setPages(pages);
       setUsers(pages[pageNumber]);
     }
-
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = 0;
-    }
   }, [users, layout]);
 
   return (
     <div>
-      <div className={layout} ref={scrollRef}>
+      <div className={layout}>
         <Table striped bordered hover>
           <thead>
             <tr>
