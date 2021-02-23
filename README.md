@@ -1,4 +1,4 @@
-# Sporttrade Table
+# User Table
 
 ## Quickstart
 
